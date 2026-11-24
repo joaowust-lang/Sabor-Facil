@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sabor Fácil · receitas simples e gostosas</title>
+<style>
+:root{--bg:#fffaf5;--surface:#fff;--ink:#2b2118;--muted:#7a6a5c;--line:#f0e2d4;--brand:#ee6c1a;--brand-ink:#fff;--soft:#fff0e3;--shadow:0 2px 10px rgba(80,40,10,.07);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a1410;--surface:#251c16;--ink:#f6ece2;--muted:#b9a794;--line:#3a2d23;--brand:#ff8a3d;--brand-ink:#1a1410;--soft:#33241a;--shadow:none;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1a1410;--surface:#251c16;--ink:#f6ece2;--muted:#b9a794;--line:#3a2d23;--brand:#ff8a3d;--brand-ink:#1a1410;--soft:#33241a;--shadow:none;color-scheme:dark}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:inherit;text-decoration:none}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--surface);z-index:30}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.bar{max-width:1100px;margin:auto;display:flex;align-items:center;gap:12px;padding:10px 16px}
+.logo{font:800 22px/1 Georgia,"Times New Roman",serif;color:var(--brand);white-space:nowrap}
+.logo span{color:var(--ink)}
+.search{flex:1;min-width:0;display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:8px 14px}
+.search input{border:0;background:none;outline:0;width:100%;font:inherit;color:var(--ink)}
+.btn{border:0;background:var(--brand);color:var(--brand-ink);font:600 14px inherit;font-family:inherit;padding:9px 16px;border-radius:999px;cursor:pointer}
+.chips{max-width:1100px;margin:auto;display:flex;gap:8px;overflow-x:auto;padding:0 16px 10px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:7px 14px;font:500 14px inherit;font-family:inherit;cursor:pointer;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+main{max-width:1100px;margin:auto;padding:0 16px 40px}
+.hero{margin:20px 0;padding:28px 22px;border-radius:20px;background:linear-gradient(135deg,var(--soft),var(--surface));border:1px solid var(--line)}
+.hero small{color:var(--brand);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.hero h1{font:800 clamp(26px,5vw,42px)/1.12 Georgia,serif;margin:8px 0 10px;max-width:16em}
+.hero p{margin:0;color:var(--muted);max-width:38em}
+.trend{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;align-items:center}
+.trend b{font-size:13px;color:var(--muted)}
+.tag{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13px;cursor:pointer;color:var(--ink);font-family:inherit}
+h2{font:700 22px Georgia,serif;margin:32px 0 12px;display:flex;align-items:baseline;gap:8px}
+h2 em{font:500 14px system-ui;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .15s}
+.card:hover{transform:translateY(-3px)}
+.thumb{height:110px;display:grid;place-items:center;font-size:52px;background:var(--soft);position:relative}
+.time{position:absolute;left:10px;bottom:8px;background:var(--surface);border-radius:999px;font-size:12px;font-weight:600;padding:2px 9px}
+.fav{position:absolute;right:8px;top:8px;border:0;background:var(--surface);width:32px;height:32px;border-radius:50%;font-size:16px;cursor:pointer;color:var(--brand)}
+.body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.body h3{margin:0;font-size:16px;line-height:1.25}
+.body p{margin:0;font-size:13.5px;color:var(--muted);flex:1}
+.body a{color:var(--brand);font-weight:600;font-size:14px}
+.feat .thumb{height:130px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:24px}
+.tools span{font-size:14px;color:var(--muted)}
+.empty{padding:40px 0;text-align:center;color:var(--muted)}
+.news{margin-top:44px;padding:28px 22px;border-radius:20px;background:var(--brand);color:var(--brand-ink);text-align:center}
+.news h2{justify-content:center;margin:0 0 6px}
+.news form{display:flex;gap:8px;max-width:420px;margin:14px auto 0}
+.news input{flex:1;min-width:0;border:0;border-radius:999px;padding:11px 16px;font:inherit}
+.news button{border:0;border-radius:999px;padding:11px 18px;background:var(--ink);color:var(--bg);font:600 14px inherit;font-family:inherit;cursor:pointer}
+.stats{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin:36px 0 0;text-align:center}
+.stats b{display:block;font:800 26px Georgia,serif;color:var(--brand)}
+.stats span{font-size:13px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:24px 16px;text-align:center;font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <a class="logo" href="#">sabor<span>fácil</span></a>
+    <label class="search">🔍<input id="q" type="search" placeholder="Buscar receita…" aria-label="Buscar receita"></label>
+    <button class="btn" id="favBtn" aria-pressed="false">♥ <span id="favN">0</span></button>
+  </div>
+  <div class="chips" id="chips"></div>
+</header>
+<main>
+  <section class="hero">
+    <small>receitas fáceis</small>
+    <h1>Pouca louça, poucos ingredientes, muito sabor.</h1>
+    <p>Ideias simples para quem mora sozinho, está sem tempo ou só quer um jantar sem complicação. Escolha uma categoria e mãos à obra.</p>
+    <div class="trend"><b>em alta:</b>
+      <button class="tag" data-s="frango">fricassê de frango</button>
+      <button class="tag" data-s="arroz">arroz à grega</button>
+      <button class="tag" data-s="bolo">bolo de cenoura</button>
+      <button class="tag" data-s="macarrão">macarrão cremoso</button>
+    </div>
+  </section>
+
+  <h2>em destaque</h2>
+  <div class="grid feat" id="feat"></div>
+
+  <div class="tools" id="tools"><span>tempo de preparo:</span></div>
+  <div id="list"></div>
+
+  <div class="stats">
+    <div><b>8.000+</b><span>receitas testadas</span></div>
+    <div><b>5 min</b><span>para as mais rápidas</span></div>
+    <div><b>100%</b><span>sem complicação</span></div>
+  </div>
+
+  <section class="news">
+    <h2>receitas no seu e-mail</h2>
+    <div>As mais salvas da semana, direto na sua caixa de entrada.</div>
+    <form id="nf"><input type="email" required placeholder="Seu melhor e-mail" aria-label="E-mail"><button>quero receber</button></form>
+    <div id="nmsg" style="margin-top:10px;font-weight:600"></div>
+  </section>
+</main>
+<footer>Site de demonstração inspirado em páginas de receitas fáceis · feito com carinho 🧡</footer>
+
+<script>
+const R=[
+["Bolos","Bolo de banana fofinho","50","🍌","Perfeito para o café da tarde, com banana bem madura."],
+["Bolos","Bolo de cenoura de liquidificador","60","🥕","Massa que sai macia e cobertura cremosa de chocolate."],
+["Bolos","Bolo de fubá","45","🌽","O clássico brasileiro, com textura que derrete."],
+["Bolos","Pão de ló de 3 ingredientes","60","🧁","Sem mistério: bata tudo e leve ao forno."],
+["Lanches","Pão de queijo","80","🧀","Herança mineira com poucos ingredientes."],
+["Lanches","Lanche de frigideira com ovo","10","🍳","Individual, rápido e pronto num instante."],
+["Lanches","Crepioca de queijo","10","🥞","Leve, nutritiva e boa a qualquer hora."],
+["Lanches","Cuscuz na xícara","8","☕","Feito no micro-ondas, sem panela para lavar."],
+["Pratos","Frango teriyaki","30","🍗","Molho agridoce que conquista todo mundo."],
+["Pratos","Strogonoff de frango","20","🍲","Lista curta de ingredientes e jantar resolvido."],
+["Pratos","Bife com cebola cremosa","30","🥩","Carne macia com toque levemente agridoce."],
+["Pratos","Fricassê de frango","32","🥘","Cremoso, com milho e batata palha por cima."],
+["Acompanhamentos","Purê de batata cremoso","35","🥔","O companheiro de qualquer prato."],
+["Acompanhamentos","Couve refogada","10","🥬","Só couve, azeite, alho e sal."],
+["Acompanhamentos","Farofa de banana","20","🍌","Doce e salgada na medida certa."],
+["Acompanhamentos","Ovo mexido simples","4","🥚","Cremoso e pronto em minutos."],
+["Massas","Macarrão cremoso na pressão","15","🍝","Tudo na mesma panela, com bacon e queijo."],
+["Massas","Macarrão alho e óleo","10","🧄","Clássico dos dias corridos."],
+["Massas","Pizza de liquidificador","30","🍕","Sem sovar: bata a massa e recheie."],
+["Massas","Lasanha de frigideira","60","🫕","Todo o sabor da lasanha numa só panela."],
+["Arroz","Arroz à grega rápido","40","🍚","Colorido e festivo, bom também no dia a dia."],
+["Arroz","Arroz cremoso com frango","60","🍛","Refeição completa para dias de pouco tempo."],
+["Arroz","Galinhada fácil","70","🐔","Panela única e sabor de casa de vó."],
+["Sopas","Sopa de legumes na pressão","40","🥣","Cinco passos e um prato que aquece."],
+["Sopas","Caldinho de feijão","55","🫘","Para as noites mais frias."],
+["Doces","Brigadeiro de colher","25","🍫","Direto da panela para a colher."],
+["Doces","Mousse de maracujá","30","🍋","Cremosa e azedinha na medida."],
+["Doces","Pipoca com chocolate","20","🍿","Crocante, ótima para maratonar séries."]
+];
+const FEAT=[1,0,16,11];
+const cats=["Todas",...new Set(R.map(r=>r[0]))];
+let cat="Todas",maxT=999,q="",onlyFav=false,favs=new Set();
+try{favs=new Set(JSON.parse(localStorage.getItem("sf_favs")||"[]"))}catch(e){}
+const $=s=>document.querySelector(s);
+const fmt=m=>m>=60?(Math.floor(m/60)+"h"+(m%60?String(m%60).padStart(2,"0"):"")):m+" min";
+function card(i){const r=R[i];return `<article class="card"><div class="thumb">${r[3]}<span class="time">⏱ ${fmt(+r[2])}</span><button class="fav" data-i="${i}" aria-label="Favoritar">${favs.has(i)?"♥":"♡"}</button></div><div class="body"><h3>${r[1]}</h3><p>${r[4]}</p><a href="#">ver receita completa →</a></div></article>`}
+function save(){try{localStorage.setItem("sf_favs",JSON.stringify([...favs]))}catch(e){}$("#favN").textContent=favs.size}
+function render(){
+  const idx=R.map((_,i)=>i).filter(i=>{const r=R[i];
+    return (cat==="Todas"||r[0]===cat)&&+r[2]<=maxT&&(!onlyFav||favs.has(i))&&(r[1]+" "+r[4]).toLowerCase().includes(q)});
+  const groups={};idx.forEach(i=>(groups[R[i][0]]??=[]).push(i));
+  const keys=Object.keys(groups);
+  $("#list").innerHTML=keys.length?keys.map(k=>`<h2 id="s-${k}">${k} fáceis <em>${groups[k].length}</em></h2><div class="grid">${groups[k].map(card).join("")}</div>`).join(""):`<div class="empty">Nenhuma receita encontrada 🍽️<br>Tente outro termo ou filtro.</div>`;
+  $("#chips").innerHTML=cats.map(c=>`<button class="chip" aria-pressed="${c===cat}" data-c="${c}">${c}</button>`).join("");
+  $("#favBtn").setAttribute("aria-pressed",onlyFav);
+  $("#favBtn").style.opacity=onlyFav?1:.9;
+}
+$("#feat").innerHTML=FEAT.map(card).join("");
+const tools=$("#tools");
+[["Todas",999],["Até 15 min",15],["Até 30 min",30],["Até 1h",60]].forEach(([l,v],n)=>{
+  const b=document.createElement("button");b.className="chip";b.textContent=l;b.setAttribute("aria-pressed",n===0);
+  b.onclick=()=>{maxT=v;tools.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b));render()};
+  tools.appendChild(b)});
+document.addEventListener("click",e=>{
+  const f=e.target.closest(".fav");
+  if(f){const i=+f.dataset.i;favs.has(i)?favs.delete(i):favs.add(i);save();$("#feat").innerHTML=FEAT.map(card).join("");render();return}
+  const c=e.target.closest("[data-c]");if(c){cat=c.dataset.c;render()}
+  const t=e.target.closest(".tag");if(t){$("#q").value=t.dataset.s;q=t.dataset.s;cat="Todas";render();$("#tools").scrollIntoView()}
+  if(e.target.closest(".card a")||e.target.closest(".logo"))e.preventDefault();
+});
+$("#q").addEventListener("input",e=>{q=e.target.value.trim().toLowerCase();render()});
+$("#favBtn").onclick=()=>{onlyFav=!onlyFav;render();$("#tools").scrollIntoView()};
+$("#nf").onsubmit=e=>{e.preventDefault();$("#nmsg").textContent="Pronto! Sua inscrição foi confirmada 🧡";e.target.reset()};
+save();render();
+</script>
+</body>
+</html>
